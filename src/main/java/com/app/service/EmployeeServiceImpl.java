@@ -6,10 +6,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.app.jpa.EmployeeRepository;
 import com.app.model.Employee;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 	
@@ -22,20 +24,18 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public String deleteEmp(Long id) {
+	public Long deleteEmp(Long id) {
 		Employee existingEmployee = empRepo.findById(id).orElse(null);
 		if(Objects.nonNull(existingEmployee)) {
 		empRepo.deleteById(id);
-		return " id "+id+" Deleted";
+		return empRepo.count();
 		}
-		else {
-			return " id "+id+" not found ";
-		}
+		return null;
 	}
 
 	@Override
 	public Employee upDateEmp(Employee emp) {
-		Employee existingEmployee = empRepo.findById(emp.getEmpId()).orElse(null);
+		Employee existingEmployee = empRepo.findById(emp.getTicketId()).orElse(null);
 //		existingEmployee.setDob(emp.getDob());
 //		existingEmployee.setFirstName(emp.getFirstName());
 //		existingEmployee.setLastName(emp.getLastName());
@@ -46,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		return (List<Employee>) empRepo.findAll();
+		return empRepo.findAll();
 	}
 
 	@Override

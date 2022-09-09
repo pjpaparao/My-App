@@ -7,7 +7,7 @@ import com.app.model.Employee;
 public interface EmployeeService {
 	
 	Employee saveEmp(Employee emp);
-	String deleteEmp(Long id);
+	Long deleteEmp(Long ticketId);
 	Employee upDateEmp(Employee emp);
 	List<Employee> getAllEmployees();
 	Employee getById(Long id);

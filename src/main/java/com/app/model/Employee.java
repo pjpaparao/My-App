@@ -16,16 +16,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity()
 @DynamicInsert()
 @DynamicUpdate()
-@Table(name="employee")
+@Table(name="ticket")
 public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Long getEmpId() {
-		return empId;
+	private Long  ticketId;
+	public Long getTicketId() {
+		return ticketId;
 	}
-	public void setEmpId(Long empId) {
-		this.empId = empId;
+	public void setTicketId(Long ticketId) {
+		this.ticketId = ticketId;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -39,24 +40,42 @@ public class Employee {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Double getSalary() {
-		return salary;
+	public String getFromDate() {
+		return fromDate;
 	}
-	public void setSalary(Double salary) {
-		this.salary = salary;
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
 	}
-	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-MM-yyyy")
-	public String getDob() {
-		return dob;
+	public String getToDate() {
+		return toDate;
 	}
-	public void setDob(String dob) {
-		this.dob = dob;
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}
-	
-	private Long empId;
+	public String getReturning() {
+		return returning;
+	}
+	public void setReturning(String returning) {
+		this.returning = returning;
+	}
+	public String getDeparting() {
+		return departing;
+	}
+	public void setDeparting(String departing) {
+		this.departing = departing;
+	}
+	public String getClassType() {
+		return classType;
+	}
+	public void setClassType(String classType) {
+		this.classType = classType;
+	}
 	private String firstName;
 	private String lastName;
-	private Double salary;
-	private String dob;
+	private String fromDate;
+	private String toDate;
+	private String returning;
+	private String departing;
+	private String classType;
 
 }
